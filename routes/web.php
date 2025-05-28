@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PostagemController;
@@ -42,6 +44,13 @@ Route::delete ('/categoria/{id}', [CategoriaController::class, 'destroy'])->name
 
 //-------------------------POSTAGENS----------------------------------------------------
 
+// Esqueci a senha
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Redefinir senha
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get ('/postagem/', [PostagemController::class, 'index'])->name ('postagem.index');
 
 Route::get ('/postagem/create', [PostagemController::class, 'create'])->name ('postagem.create');
