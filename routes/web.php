@@ -7,6 +7,9 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PostagemController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -18,10 +21,18 @@ Route::get('/', [SiteController::class, 'index'])->name('site.index');
 Route::get('/PostagemByCategoriaById/{id}', [SiteController::class, 'PostagemByCategoriaById'])->name('site.PostagemByCategoriaById');
 Route::get('/PostagemByAutorId/{id}', [SiteController::class, 'PostagemByAutorById'])->name('site.PostagemByAutorById');
 
+//Linkar
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
 Auth::routes();
+
 Route::middleware(['auth'])->group(function () {
+//criar conta
 
 
+Route::post('/register', [RegisteredUserController::class, 'store'])
+    ->middleware('guest');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -69,6 +80,29 @@ Route::delete ('/postagem/{id}', [PostagemController::class, 'destroy'])->name (
 Route::get ('/admin/alterarSenha', [UserController::class, 'alterarSenha'])->name ('admin.alterarSenha');
 Route::put ('/admin/updateSenha', [UserController::class, 'updateSenha'])->name ('admin.updateSenha');
 
+// Recuperar senha - Mostrar formulário para informar e-mail
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.request');
 
+// Recuperar senha - Enviar e-mail com link de redefinição
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.email');
+
+// Redefinir senha - Mostrar formulário com o token do link
+Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+// Redefinir senha - Submeter nova senha
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.update');
+
+//criando nova conta
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->middleware('guest')
+    ->name('register');
 
 });
