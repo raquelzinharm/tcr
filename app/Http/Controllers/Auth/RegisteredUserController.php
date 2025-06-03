@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
     public function create()
     {
-        return view('auth.user.register');
+        return view('auth.user.register'); // exato esse caminho
     }
+
 
     public function store(Request $request)
     {
@@ -31,6 +32,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home'); // ou outra rota da sua aplicação
+        return redirect()->route('home');
     }
 }
