@@ -1,37 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<h2>Forgot Password</h2>
+<div style="max-width: 400px; margin: 60px auto; padding: 30px; border: 1px solid #ccc; border-radius: 10px; background: #fff;">
+    <h2 style="text-align: center; margin-bottom: 10px;">Esqueceu sua senha?</h2>
+    <p style="text-align: center; color: #555; margin-bottom: 25px;">
+        Informe seu e-mail cadastrado para receber um link de redefinição.
+    </p>
 
-<form method="POST" action="{{ route('password.email') }}">
-    @csrf
-    <input type="email" name="email" placeholder="Email" required autofocus>
+    @if (session('status'))
+        <div style="color: green; margin-bottom: 15px; text-align: center;">
+            {{ session('status') }}
+        </div>
+    @endif
 
-    @error('email')
-        <div>{{ $message }}</div>
-    @enderror
+    @if ($errors->any())
+        <div style="color: red; margin-bottom: 15px;">
+            <ul style="margin: 0; padding-left: 20px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <button type="submit">Send Password Reset Link</button>
-</form>
-@endsection
-@extends('layouts.app')
+    <form method="POST" action="{{ route('password.email') }}">
+        @csrf
 
-@section('content')
-<h2>Forgot Your Password?</h2>
+        <div style="margin-bottom: 20px;">
+            <input type="email" name="email" placeholder="Seu e-mail" value="{{ old('email') }}" required autofocus
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
 
-@if(session('status'))
-    <div style="color: green;">{{ session('status') }}</div>
-@endif
+        <div style="margin-bottom: 20px;">
+            <button type="submit"
+                style="width: 100%; padding: 10px; background-color: #3490dc; color: white; border: none; border-radius: 5px;">
+                Enviar link de redefinição
+            </button>
+        </div>
+    </form>
 
-<form method="POST" action="{{ route('password.email') }}">
-    @csrf
-    <label for="email">Email Address</label><br>
-    <input type="email" id="email" name="email" required autofocus><br><br>
-
-    @error('email')
-        <div style="color: red;">{{ $message }}</div>
-    @enderror
-
-    <button type="submit">Send Password Reset Link</button>
-</form>
+    <div style="text-align: center;">
+        <a href="{{ route('login') }}">Voltar para o login</a>
+    </div>
+</div>
 @endsection
