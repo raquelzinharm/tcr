@@ -13,7 +13,13 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\ChefController;
 use App\Http\Controllers\PesquisaController;
+use App\Http\Controllers\FavoriteController;
 
+//FAVORITAR RECEITA
+Route::middleware(['auth'])->group(function () {
+    Route::post('/receitas/{id}/favoritar', [FavoriteController::class, 'store'])->name('receitas.favoritar');
+    Route::delete('/receitas/{id}/desfavoritar', [FavoriteController::class, 'destroy'])->name('receitas.desfavoritar');
+});
 
 
 //PERFIL CHEF

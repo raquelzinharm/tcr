@@ -45,6 +45,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // app/Models/User.php
+
+public function favoritas()
+{
+    return $this->belongsToMany(Receita::class, 'favorites')->withTimestamps();
+}
+
+public function favoritou(Receita $receita)
+{
+    return $this->favoritas()->where('receita_id', $receita->id)->exists();
+}
+
 }
 
 // app/Models/User.php
