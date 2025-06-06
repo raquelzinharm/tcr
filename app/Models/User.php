@@ -46,3 +46,10 @@ class User extends Authenticatable
         ];
     }
 }
+
+// app/Models/User.php
+
+public function favoritas()
+{
+    return $this->belongsToMany(Receita::class, 'favorites'); // Tabela intermediária
+}

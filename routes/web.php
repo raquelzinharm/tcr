@@ -10,6 +10,25 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ReceitaController;
+use App\Http\Controllers\ChefController;
+use App\Http\Controllers\PesquisaController;
+
+
+
+//PERFIL CHEF
+Route::get('/', fn () => view('welcome'))->name('home');
+Route::get('/receitas', [ReceitaController::class, 'index'])->name('receitas.index');
+Route::get('/chefs', [ChefController::class, 'index'])->name('chefs.index');
+Route::get('/pesquisar', [PesquisaController::class, 'index'])->name('pesquisar');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [UserController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+
+
 
 // Página inicial
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
