@@ -65,7 +65,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = auth()->user();
+    $receitas = $user->receitas()->latest()->get();
+
+    return view('profile', compact('user', 'receitas'));
     }
 
     /**
@@ -81,7 +84,15 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        $user = auth()->user();
+        $user->descricao = $request->descricao;
+        $user->save();
+    
+        return redirect()->route('profile.show')->with('success', 'Perfil atualizado!');
     }
 
     /**
@@ -91,4 +102,12 @@ class UserController extends Controller
     {
         //
     }
+
+    // app/Models/User.php
+
+public function receitas()
+{
+    return $this->hasMany(Receita::class);
+}
+
 }

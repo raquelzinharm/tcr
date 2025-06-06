@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ReceitaController;
-use App\Http\Controllers\ChefController;
 use App\Http\Controllers\PesquisaController;
 use App\Http\Controllers\FavoriteController;
 
@@ -23,10 +22,10 @@ Route::middleware(['auth'])->group(function () {
 
 
 //PERFIL CHEF
-Route::get('/', fn () => view('welcome'))->name('home');
-Route::get('/receitas', [ReceitaController::class, 'index'])->name('receitas.index');
-Route::get('/chefs', [ChefController::class, 'index'])->name('chefs.index');
-Route::get('/pesquisar', [PesquisaController::class, 'index'])->name('pesquisar');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/meu-perfil', [UserController::class, 'show'])->name('profile.show');
+    Route::put('/meu-perfil', [UserController::class, 'update'])->name('profile.update');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'show'])->name('profile');
