@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\PesquisaController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\HomeController;
 
 //FAVORITAR RECEITA
 Route::middleware(['auth'])->group(function () {
@@ -32,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
-
 
 
 // Página inicial
