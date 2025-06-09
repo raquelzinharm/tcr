@@ -63,12 +63,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        $user = auth()->user();
-    $receitas = $user->receitas()->latest()->get();
+        $user = auth()->user(); // Pega o usuário autenticado
+        $receitas = $user->receitas()->latest()->get(); // Suas receitas
 
-    return view('profile', compact('user', 'receitas'));
+        return view('profile', compact('user', 'receitas'));
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
             'descricao' => 'nullable|string|max:1000',
@@ -91,7 +91,7 @@ class UserController extends Controller
         $user = auth()->user();
         $user->descricao = $request->descricao;
         $user->save();
-    
+
         return redirect()->route('profile.show')->with('success', 'Perfil atualizado!');
     }
 

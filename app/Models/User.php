@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Receita;
+
 
 class User extends Authenticatable
 {
@@ -46,6 +48,12 @@ class User extends Authenticatable
         ];
     }
     // app/Models/User.php
+
+    public function receitas()
+{
+    return $this->hasMany(Receita::class);
+}
+
 
 public function favoritas()
 {
