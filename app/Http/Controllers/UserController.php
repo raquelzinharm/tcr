@@ -8,6 +8,38 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function alterarPerfil(){
+        $perfil = auth()->user();
+        return view('user.alterarPerfil',compact('perfil'));
+    }
+
+    public function updatePerfil(Request $request)  {
+        //dd ($request->all());
+        $content = file_get_contents($request->file('foto'));
+        $messages = [
+            'descricao.required' => 'A descrição é obrigatória',
+
+        ];
+        $validated = $request->validate([
+            'descricao' => 'required|min:5',
+            'foto' => 'mimes:jpg,bmp,png'
+        ], $messages);
+
+         $user = auth()->user();
+         $user->descricao = $request->descricao;
+         $user->foto = base64_encode($content);
+         $user->save();
+
+         return redirect()->back()->with('message', 'Alterado com sucesso!');
+
+    }
+
+
+
+
+
+
+
     public function alterarSenha()
     {
         return view('user.alterarSenha');
