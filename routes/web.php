@@ -108,4 +108,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/alterarSenha', [UserController::class, 'alterarSenha'])->name('admin.alterarSenha');
     Route::put('/admin/updateSenha', [UserController::class, 'updateSenha'])->name('admin.updateSenha');
 
+
+
+    // ------------------------- ADMIN - ALTERAR PERFIL -------------------------
+    Route::get('/admin/alterarPerfil', [UserController::class, 'alterarPerfil'])->name('admin.alterarPerfil');
+    Route::put('/admin/updatePerfil', [UserController::class, 'updatePerfil'])->name('admin.updatePerfil');
+
 });

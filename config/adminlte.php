@@ -334,9 +334,9 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Alterar Perfil',
+            'url' => 'admin/alterarPerfil',
+            'icon' => 'fas fa-fw fa-lock',
         ],
         [
             'text' => 'Alterar Senha',

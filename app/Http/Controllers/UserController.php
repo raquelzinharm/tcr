@@ -8,6 +8,38 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function alterarPerfil(){
+        $perfil = auth()->user();
+        return view('user.alterarPerfil',compact('perfil'));
+    }
+
+    public function updatePerfil(Request $request)  {
+        //dd ($request->all());
+        $content = file_get_contents($request->file('foto'));
+        $messages = [
+            'descricao.required' => 'A descrição é obrigatória',
+
+        ];
+        $validated = $request->validate([
+            'descricao' => 'required|min:5',
+            'foto' => 'mimes:jpg,bmp,png'
+        ], $messages);
+
+         $user = auth()->user();
+         $user->descricao = $request->descricao;
+         $user->foto = base64_encode($content);
+         $user->save();
+
+         return redirect()->back()->with('message', 'Alterado com sucesso!');
+
+    }
+
+
+
+
+
+
+
     public function alterarSenha()
     {
         return view('user.alterarSenha');
@@ -63,12 +95,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        $user = auth()->user();
-    $receitas = $user->receitas()->latest()->get();
+        $user = auth()->user(); // Pega o usuário autenticado
+        $receitas = $user->receitas()->latest()->get(); // Suas receitas
 
-    return view('profile', compact('user', 'receitas'));
+        return view('profile', compact('user', 'receitas'));
     }
 
     /**
@@ -82,7 +114,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
             'descricao' => 'nullable|string|max:1000',
@@ -91,7 +123,7 @@ class UserController extends Controller
         $user = auth()->user();
         $user->descricao = $request->descricao;
         $user->save();
-    
+
         return redirect()->route('profile.show')->with('success', 'Perfil atualizado!');
     }
 
