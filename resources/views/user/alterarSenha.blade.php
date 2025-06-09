@@ -32,13 +32,13 @@
                     <div class ="form-group">
 
                     <label> Senha antiga: </label>
-                    <input type = "text" name = "password_old" class = "form-control">
+                    <input type = "password" name = "password_old" class = "form-control">
 
                     <label> Senha nova: </label>
-                    <input type = "text" name = "password_new" class = "form-control">
+                    <input type = "password" name = "password_new" class = "form-control">
 
                     <label> Senha nova (repetir): </label>
-                    <input type = "text" name = "password_new2" class = "form-control">
+                    <input type = "password" name = "password_new2" class = "form-control">
 
                      </div>
 
