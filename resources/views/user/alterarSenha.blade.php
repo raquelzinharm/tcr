@@ -25,7 +25,8 @@
                 @endif
                 <div class="card-body">
 
-                   <form action = "{{ url ('admin/updateSenha') }}"method = 'POST'>
+                    <form action="{{ url('admin/updateSenha') }}" method="POST">
+
                     @method('put')
                     @csrf
 
