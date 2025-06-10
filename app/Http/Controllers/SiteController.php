@@ -27,6 +27,7 @@ class SiteController extends Controller
         $categorias = Categoria::orderBy('nome', 'ASC')->get();
         $autores = User::orderBy('name', 'ASC')->get();
         $postagens = Postagem::where ('user_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
-           return view ('welcome', compact('categorias' , 'postagens', 'autores'));
+        $autor = User::find($id);
+           return view ('welcome', compact('categorias' , 'postagens', 'autores','autor'));
         }
 }

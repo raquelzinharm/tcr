@@ -37,8 +37,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Página inicial
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
-Route::get('/PostagemByCategoriaById/{id}', [SiteController::class, 'PostagemByCategoriaById'])->name('site.PostagemByCategoriaById');
-Route::get('/PostagemByAutorId/{id}', [SiteController::class, 'PostagemByAutorById'])->name('site.PostagemByAutorById');
+Route::get('/PostagemByCategoriaId/{id}', [SiteController::class, 'PostagemByCategoriaId'])->name('site.PostagemByCategoriaId');
+Route::get('/PostagemByAutorId/{id}', [SiteController::class, 'PostagemByAutorId'])->name('site.PostagemByAutorId');
 
 //
 // ROTAS DE AUTENTICAÇÃO

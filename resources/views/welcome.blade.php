@@ -7,6 +7,11 @@
     <section id="main">
         <div class="container">
 
+            @isset($autor)
+            {{ $autor->name }}
+            <img src ="data:image/png;base64, {{ $autor->foto }}" alt="Imagem de perfil" />
+            @endisset
+
             @foreach ($postagens as $value )
             <article class="box post">
               <header>
