@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
 
+    {{--
     <!-- Barra de menu simples -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <a class="navbar-brand" href="{{ route('home') }}">Home</a>
@@ -33,6 +34,7 @@
         </div>
         @endforeach
     @endif
+    --}}
 
 </div>
 @endsection
