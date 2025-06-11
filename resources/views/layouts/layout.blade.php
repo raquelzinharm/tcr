@@ -33,9 +33,9 @@
         <a href="{{ route('home') }}" style="font-weight: bold; font-size: 20px;">TASTY CRUNCHY RECIPES</a>
 
         <div class="nav-links">
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('receitas.index') }}">Receitas</a>
-            <a href="{{ route('chefs.index') }}">Chef</a>
+            <a href="{{-- route('home') --}}">Home</a>
+            <a href="{{-- route('receitas.index') --}}">Receitas</a>
+            <a href="{{-- route('chefs.index') --}}">Chef</a>
 
             <form action="{{ route('pesquisar') }}" method="GET" class="search-bar">
                 <input type="text" name="q" placeholder="Buscar...">
