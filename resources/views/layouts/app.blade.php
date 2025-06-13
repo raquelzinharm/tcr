@@ -18,12 +18,12 @@
         <section id="header">
 
             <!-- Logo -->
-                <h1><a href="index.html">Dopetrope</a></h1>
+                <h1><a href="index.html">Home</a></h1>
 
             <!-- Nav -->
                 <nav id="nav">
                     <ul>
-                        <li class="current"><a href="{{ url("/") }}">Principal</a></li>
+                        <li class="current"><a href="{{ url("/") }}">Receitas</a></li>
                         <li>
                             <a href="#">Categorias</a>
                             <ul>
