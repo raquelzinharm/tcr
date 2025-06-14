@@ -17,11 +17,6 @@
                     <p>{!! $value->descricao!!}</p>
                     <p>Autor: {{$value->autor->name}} </p>
                     @endforeach
-
-            <form class="form-inline ml-auto" method="GET" action="{{ route('site.index') }}">
-                <input name="q" class="form-control mr-sm-2" type="search" placeholder="Pesquisar receita" aria-label="Search" value="{{ request('q') }}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
         </nav>
 
     </div>

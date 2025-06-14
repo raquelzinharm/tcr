@@ -18,11 +18,20 @@
 				<section id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.html">Tasty Crunch Recipes</a></h1>
+                <!-- Nav -->
+                    <h1><a href="index.html">Tasty Crunch Recipes</a></h1>
 
+                    <br>
+                    <div style="text-align: center;">
+                        <form class="d-flex ms-auto me-3" method="GET" action="{{ route('site.index') }}">
+                            <input name="q" class="form-control me-2" type="search" placeholder="Pesquisar receita" aria-label="Search" value="{{ request('q') }}">
+                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        </form>
+                      </div>
 					<!-- Nav -->
 						<nav id="nav">
-							<ul>
+
+                            <ul>
 								<li class="current"><a href="{{ url("/") }}">Principal</a></li>
 								<li>
                                     <a href="#">Categorias</a>
@@ -46,8 +55,7 @@
 							</ul>
 						</nav>
                         <!-- desce la p baixo -->
-                        <a href="#section2">Chefes</a>
-                        <a href="#section3">Receitas</a>
+
         <div class="container">
             @yield('content')
         </div>
