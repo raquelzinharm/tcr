@@ -68,26 +68,17 @@
 							<div class="col-8 col-12-medium">
 								<section>
 									<header>
-										<h2>Blandit nisl adipiscing</h2>
-									</header>
-									<!-- vim para ca -->
-                                    <h2 id="section2">Section 2</h2>
-                                    <h2 id="section3">Section 3</h2>
-                                    <ul class="dates">
-										<li>
-											<span class="date">Jan <strong>27</strong></span>
-											<h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
-											<p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat etiam.</p>
-										</li>
-										<li>
-											<span class="date">Jan <strong>23</strong></span>
-											<h3><a href="#">Ipsum sed blandit nisl consequat</a></h3>
-											<p>Blandit phasellus lorem ipsum dolor tempor sapien tortor hendrerit adipiscing feugiat lorem.</p>
-										</li>
-										<li>
-											<span class="date">Jan <strong>15</strong></span>
-											<h3><a href="#">Magna tempus lorem feugiat</a></h3>
-											<p>Dolore consequat sed phasellus lorem sed etiam nullam dolor etiam sed amet sit consequat.</p>
+                                        <h2 id="section2">Nossos Chefes</h2>
+
+                                           <div class="chef-profile">
+                                           <h3>Chef Antônio Souza - AM</h3>
+                                         <img src="{{ url('images/chefs/antonio.jpg') }}" alt="Chef Antônio Souza" style="max-width: 300px; border-radius: 10px; margin-bottom: 10px;">
+                                            <p>
+                                    Nascido e criado em Manaus, o Chef é dono de um Restaurante Flutuante no grande rio Amazonas: o <strong>“Peixe Vermelho”</strong>, famoso por seu preparo do tradicional peixe <strong>Pirarucu</strong>. Antônio é especialista em pratos regionais amazônicos e é reconhecido por valorizar os sabores autênticos da floresta.
+                                                 </p>
+                                            </div>
+
+
 										</li>
 										<li>
 											<span class="date">Jan <strong>12</strong></span>
