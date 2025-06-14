@@ -87,6 +87,14 @@
                                                  </p>
                                             </div>
 
+                                            <div class="chef-profile">
+                                                <h3>Chef Amanda Goés - RS</h3>
+                                              <img src="{{ url('images/chefs/antonio.jpg') }}" alt="Chef Antônio Souza" style="max-width: 300px; border-radius: 10px; margin-bottom: 10px;">
+                                                 <p>
+                                                    Nascida e criada em Porto Alegre, a Chef Amanda é dona do Restaurante “Pé de Fava”, e compartilha receitas e dicas de preparo da mais deliciosa comida gaúcha. Do perfeito churrasco, ao Chá Matte sem erros em minutos.
+                                                      </p>
+                                                 </div>
+
 
 										</li>
 										<li>
