@@ -3,11 +3,6 @@
 @section('content')
     <div class="container">
 
-        <!-- Barra de menu -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
-            <a class="navbar-brand" href="{{ url('/chefes') }}">Chefes</a>
-
                 @isset($autor)
                     {{ $autor->name }}
                     <img src ="data:image/png;base64, {{ $autor->foto }}" alt="Imagem de perfil" />
