@@ -20,7 +20,16 @@
 					<!-- Logo -->
                 <!-- Nav -->
                     <h1><a href="index.html">Tasty Crunch Recipes</a></h1>
+                    <div style="display: flex; justify-content: flex-end; padding: 15px 30px;">
 
+                        <a href="{{ route('login') }}">
+                            <button style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
+                                    onmouseover="this.style.backgroundColor='#45a049'"
+                                    onmouseout="this.style.backgroundColor='#4CAF50'">
+                                Login
+                            </button>
+                        </a>
+                    </div>
                     <br>
                     <div style="text-align: center;">
                         <form class="d-flex ms-auto me-3" method="GET" action="{{ route('site.index') }}">
