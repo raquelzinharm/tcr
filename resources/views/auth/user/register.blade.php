@@ -18,31 +18,31 @@
         @csrf
 
         <div style="margin-bottom: 15px;">
-            <label for="name">Nome</label><br>
+            <label for="name">Nome:</label><br>
             <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus style="width: 100%;">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label for="email">Email</label><br>
+            <label for="email">Email:</label><br>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required style="width: 100%;">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label for="password">Senha</label><br>
+            <label for="password">Senha:</label><br>
             <input id="password" type="password" name="password" required style="width: 100%;">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label for="password_confirmation">Confirmar Senha</label><br>
+            <label for="password_confirmation">Confirmar Senha:</label><br>
             <input id="password_confirmation" type="password" name="password_confirmation" required style="width: 100%;">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <button type="submit">Criar Conta</button>
+            <button type="submit" style="background-color: #d8b4f8; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Criar Conta</button>
         </div>
 
         <div>
-            <a href="{{ route('login') }}">Já tem conta? Faça login</a>
+            <a href="{{ route('login') }}" style="color: black;">Já tem conta? Faça login</a>
         </div>
     </form>
 </div>
