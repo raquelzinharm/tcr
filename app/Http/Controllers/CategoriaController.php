@@ -2,97 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Categoria;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
+    public function __construct()
+    {
+        // Só quem está autenticado pode criar/editar/excluir
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
-     * Display a listing of the resource.
+     * Lista todas as categorias (público)
      */
     public function index()
     {
-        $categorias = Categoria::orderBy('nome', 'ASC')->get();
-        return view ('categoria.categoria_index', compact ('categorias'));
+        $categorias = Categoria::withCount('receitas')->get();
+        return view('categoria.index', compact('categorias'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe uma categoria com suas receitas (público)
+     */
+    public function show($id)
+    {
+        $categoria = Categoria::with('receitas.autor')->findOrFail($id);
+        return view('categoria.show', compact('categoria'));
+    }
+
+    /**
+     * Formulário de criação de categoria (restrito)
      */
     public function create()
     {
-        return view ('categoria.categoria_create');
+        return view('categoria.create');
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Armazena uma nova categoria (restrito)
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome' => 'required|string|max:255|unique:categorias,nome',
+        ]);
 
-        $messages = [
-          'nome.required' => 'O nome é um campo obrigatório.' ,
+        Categoria::create([
+            'nome' => $request->nome,
+        ]);
 
-        ];
-
-        $validated = $request->validate([
-         'nome' => 'required|min:5',
-
-        ], $messages);
-
-        //dd ($request->all());
-        $categoria = new Categoria();
-        $categoria->nome = $request->nome;
-        $categoria->save();
-
-        return redirect()->route('categoria.index')->with('message', 'Categoria cadastrada com sucesso!');
+        return redirect()->route('categoria.index')->with('success', 'Categoria criada com sucesso!');
     }
 
     /**
-     * Display the specified resource.
+     * Formulário de edição de categoria (restrito)
      */
-    public function show(string $id)
+    public function edit($id)
     {
-        $categoria = Categoria::find($id);
-        return view ('categoria.categoria_show', compact ('categoria'));
+        $categoria = Categoria::findOrFail($id);
+        return view('categoria.edit', compact('categoria'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Atualiza uma categoria existente (restrito)
      */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        $categoria = Categoria::find($id);
-        return view ('categoria.categoria_edit', compact ('categoria'));
+        $categoria = Categoria::findOrFail($id);
+
+        $request->validate([
+            'nome' => 'required|string|max:255|unique:categorias,nome,' . $categoria->id,
+        ]);
+
+        $categoria->update([
+            'nome' => $request->nome,
+        ]);
+
+        return redirect()->route('categoria.index')->with('success', 'Categoria atualizada!');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Remove uma categoria (restrito)
      */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        $messages = [
-            'nome.required' => 'O nome é um campo obrigatório.' ,
-          ];
-
-            $validated = $request->validate([
-                'nome' => 'required|min:5',
-            ], $messages);
-
-          $categoria = Categoria::find($id);
-          $categoria->nome = $request->nome;
-          $categoria->save();
-
-          return redirect()->route('categoria.index')->with('message', 'Categoria atualizada com sucesso!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $categoria = Categoria::find($id);
+        $categoria = Categoria::findOrFail($id);
         $categoria->delete();
 
-        return redirect()->route('categoria.index')->with('message', 'Categoria excluída com sucesso!');
+        return redirect()->route('categoria.index')->with('success', 'Categoria excluída.');
     }
 }
