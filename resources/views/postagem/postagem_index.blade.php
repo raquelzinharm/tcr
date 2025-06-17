@@ -38,7 +38,7 @@
                             <td>{{$value->categoria->nome }}</td>
                             <td>{{$value->titulo }}</td>
                             <td>
-                            <a class = "btn btn-danger" href = " {{url ('postagem/' . $value->id) }}" >Visualizar</a>
+                            <a class = "btn btn-primary" href = " {{url ('postagem/' . $value->id) }}" >Visualizar</a>
                             <a class = "btn btn-warning" href = ' {{url ('postagem/' . $value->id . '/edit') }}'>Editar</a>
 
                             <form action = "{{ url ('postagem/' . $value->id) }}" method ="POST" onsubmit ='return ConfirmDelete()'>

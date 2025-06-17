@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function alterarPerfil(){
         $perfil = auth()->user();
-        return view('user.alterarPerfil',compact('perfil'));
+        return view('auth.user.alterarPerfil',compact('perfil'));
     }
 
     public function updatePerfil(Request $request)  {
@@ -34,15 +34,9 @@ class UserController extends Controller
 
     }
 
-
-
-
-
-
-
     public function alterarSenha()
     {
-        return view('user.alterarSenha');
+        return view('auth.user.alterarSenha');
     }
     public function updateSenha(Request $request)  {
         //dd ($request->all());
