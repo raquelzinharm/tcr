@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable;
 
-class Categoria extends Model implements Auditable
+class Categoria extends Model
 {
-    use \OwenIt\Auditing\Auditable;
-    protected $table = 'categorias';
+    protected $fillable = ['nome'];
+
+    public function receitas()
+    {
+        return $this->hasMany(Receita::class);
+    }
 }
