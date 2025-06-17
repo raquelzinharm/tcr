@@ -14,6 +14,8 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('categorias')->truncate();
+
         DB::table('categorias')->insert([
           'nome' => 'Doce',
           'created_at' => now(),
