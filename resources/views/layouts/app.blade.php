@@ -14,13 +14,26 @@
             padding-top: 0; /* Remove qualquer preenchimento superior da seção do cabeçalho */
             margin-top: 1;  /* Remove qualquer margem superior da seção do cabeçalho */
     }
-
             body { background-color: #f7e5e0; }
-			.navbar-custom { background-color: #ffdb43; padding: 10px 30px; }
-			.btn-custom { background-color:#d8b4f8;; color: #f7e5e0; border: none; border-radius: 5px; }
-			.btn-custom:hover { background-color: #8fdb43; }
-			.btn-buscar { background-color: #8fdb43; color: #f7e5e0 border: none; border-radius: 5px; }
+            .navbar-custom { background-color: #f7e5e0; padding: 10px 30px; }
 
+            /* Botão Custom */
+            .btn-custom {
+                background-color:#d8b4f8; /* Cor normal */
+                border-radius: 5px;
+            }
+            .btn-custom:hover {
+                background-color: #d8b4f8; /* MESMA cor para hover */
+            }
+
+            /* Botão Buscar */
+            .btn-buscar {
+                background-color: #8fdb43; /* Cor normal */
+                border-radius: 5px;
+            }
+            .btn-buscar:hover {
+                background-color: #8fdb43; /* MESMA cor para hover */
+            }
             #header h1 {
 
             display: flex;
@@ -72,7 +85,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="{{ url('/') }}">Principal</a></li>
+						<li class="current"><a href="{{ url('/') }}">Receitas</a></li>
 						<li><a href="#">Categorias</a>
 							<ul>
 								@foreach ($categorias as $value)
@@ -80,15 +93,14 @@
 								@endforeach
 							</ul>
 						</li>
-						<li><a href="#">Autores</a>
+						<li><a href="#">Chefes</a>
 							<ul>
 								@foreach ($autores as $value)
 									<li><a href="{{ url('/PostagemByAutorId/' . $value->id) }}">{{ $value->name }}</a></li>
 								@endforeach
 							</ul>
 						</li>
-						<li><a href="#section2">Chefes</a></li>
-						<li><a href="#section3">Receitas</a></li>
+
 					</ul>
 				</nav>
 			</section>
@@ -117,7 +129,7 @@
 			</div>
 
 			<footer class="text-center py-4" style="background-color: #f8f9fa;">
-				<p>&copy; {{ date('Y') }} Tasty Crunch Recipes. Todos os direitos reservados.</p>
+				<p>Tasty Crunch Recipes. &copy; {{ date('Y') }}</p>
 			</footer>
 
 		</div>
